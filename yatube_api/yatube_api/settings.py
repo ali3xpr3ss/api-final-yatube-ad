@@ -7,7 +7,7 @@ SECRET_KEY = 'hhz7l-ltdismtf@bzyz+rple7*s*w$jak%whj@(@u0eok^f9k4'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -97,6 +97,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '1000/hour',
+        'user': '5000/hour',
+    },
 }
 
 SIMPLE_JWT = {
